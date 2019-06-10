@@ -10,6 +10,7 @@ const loginRequired = require('./middleware/LoginRequired');
 
 const routes = require('./routes');
 
+const socket = require('./util/socket');
 const passport = require('./util/passport');
 const { log, error } = require('./util/logger');
 
@@ -18,6 +19,7 @@ const PORT = process.env.PORT;
 const ENV = process.env.NODE_ENV || 'development';
 
 const app = express();
+const server = require('http').Server(app);
 
 app.set('view engine', 'pug');
 app.use(helmet());
@@ -49,6 +51,8 @@ app.use(loginRequired);
 
 routes(app);
 
-app.listen(PORT, HOST, () => {
-  log(`Spot Shot Party is running: 🌎${HOST}:${PORT} - ${ENV} mode `);
-});
+socket
+  .serve(app)
+  .listen(PORT, HOST, () => {
+    log(`Spot Shot Party is running: 🌎${HOST}:${PORT} - ${ENV} mode `);
+  });

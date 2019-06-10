@@ -7,9 +7,11 @@ import Grid from 'ui/Grid';
 import GridContent from 'ui/GridContent';
 import Background from 'ui/Background';
 
-import NotFound from 'components/NotFound';
-import PartyCreatePage from 'components/PartyPage/Create';
 import HomePage from 'components/HomePage/HomePage';
+import NotFound from 'components/NotFound';
+
+import PartyCreatePage from 'components/PartyPage/Create';
+import TrackPage from 'components/TrackPage';
 
 export default (
   <App>
@@ -19,6 +21,7 @@ export default (
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/party/create" component={PartyCreatePage} />
+            <Route exact path="/party/track" component={TrackPage} />
             <Route component={NotFound} />
           </Switch>
         </GridContent>
