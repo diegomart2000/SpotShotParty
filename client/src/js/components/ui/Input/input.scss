@@ -1,0 +1,41 @@
+@import 'styles/styles.scss';
+
+@mixin input-primary {
+  color: $purple-invert;
+
+  :hover,
+  :active {
+    color: inherit;
+  }
+
+  :focus {
+    color: $purple-invert;
+    color: inherit;
+  }
+}
+
+.input {
+  font-weight: 600;
+  background-color: $background-ghost;
+
+  &:hover,
+  &:active {
+    box-shadow: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0rem .2rem rgba(0, 0, 0, .7) !important;
+    transition: none;
+  }
+
+  &.is-primary {
+    @include input-primary();
+  }
+  &::-webkit-input-placeholder {
+    color: $purple-invert;
+    opacity: .6;
+  }
+
+}
+
+

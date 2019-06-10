@@ -1,0 +1,71 @@
+@import 'styles/styles.scss';
+
+$item-size: ($gap * 1.5);
+$item-gap: ($gap);
+
+.playlists {
+  padding: 0 $gap;
+  background-color: $background-ghost;
+  border-radius: $gap;
+  border: 3px solid $primary;
+  width: 100%;
+  max-height: 45vh;
+  height: ($gap + 6 * $item-size + 6 * $item-gap);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding-top: ($item-gap);
+    scroll-snap-align: start;
+    cursor: pointer;
+
+    &:hover:not(&--selected) {
+      & > .thumb {
+        box-shadow: 0 0 12px $purple;
+      }
+
+      & > h2 {
+        text-shadow: 0 0 12px $purple;
+        //color: $purple !important;
+      }
+    }
+
+    &:last-child {
+      padding-bottom: $item-gap;
+    }
+
+    & > .thumb {
+      width: ($item-size);
+      height: ($item-size);
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-image: linear-gradient(180deg, $pink, $purple);
+      margin-right: ($gap / 2);
+
+      transition: box-shadow 200ms;
+    }
+
+    & > h2 {
+      transition: color 200ms, text-shadow 200ms;
+    }
+
+    &--selected {
+      & > .thumb {
+        box-shadow: 0 0 24px 8px $pink;
+      }
+
+      & > h2 {
+        text-shadow: 0 0 12px $pink;
+        color: $pink !important;
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}

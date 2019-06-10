@@ -1,0 +1,58 @@
+@import 'styles/styles.scss';
+
+@mixin button-color($start, $end) {
+  background-image: linear-gradient(180deg, $start, $end);
+  color: $purple-invert;
+
+  &:hover,
+  &:active {
+    background-image: linear-gradient(180deg, darken($start, 10%), darken($end, 10%));
+  }
+
+  &:focus {
+    color: $purple-invert;
+    background-image: linear-gradient(180deg, darken($start, 5%), darken($end, 5%));
+  }
+}
+
+.button {
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, .8);
+  font-weight: 600;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, .7);
+  }
+
+  &:focus {
+    box-shadow: 0 0rem .2rem rgba(0, 0, 0, .7) !important;
+    transition: none;
+  }
+
+  &.is-primary {
+    @include button-color($pink, $purple);
+  }
+
+  & > span {
+    margin-left: 5px;
+    animation: animationFrames linear 1.5s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+  }
+
+
+  @keyframes animationFrames{
+    0% {
+      transform:  translate(0px,0px)  ;
+    }
+    50% {
+      transform:  translate(10px,0px)  ;
+    }
+    100% {
+      transform:  translate(0px,0px)  ;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,73 @@
+
+$blue: #227fff;
+$purple: #8c1eff;
+$pink: #f222ff;
+$red: #ff2975;
+$orange: #ff901f;
+$yellow: #ffd319;
+$green: #18ff30;
+
+@function color-ghost($color) {
+  @return change-color($color, $alpha: .2);
+};
+
+$blue-ghost: color-ghost($blue);
+$purple-ghost: color-ghost($purple);
+$pink-ghost: color-ghost($pink);
+$red-ghost: color-ghost($red);
+$orange-ghost: color-ghost($orange);
+$yellow-ghost: color-ghost($yellow);
+$green-ghost: color-ghost($green);
+
+$primary: $pink;
+
+$background-ghost: rgba(0,0,0,.4);
+
+// Control
+$radius-small: 1rem;
+$radius: 2rem;
+$radius-large: 3rem;
+
+$control-height: 4rem;
+$control-border-width: 3px !default;
+
+$control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
+$control-padding-horizontal: calc(2rem - #{$control-border-width}) !default;
+
+// Button
+$button-border-width: 0;
+$button-padding-vertical: calc(0.375em - #{button-border-width}) !default;
+$button-padding-horizontal: calc(3rem - #{$button-border-width}) !default;
+
+// Link
+$link: $yellow;
+$link-invert: $yellow;
+$link-visited: $orange;
+
+$link-hover: $orange !default;
+$link-hover-border: $orange-ghost !default;
+
+$link-focus: $orange !default;
+$link-focus-border: $orange-ghost !default;
+
+$link-active: $orange !default;
+$link-active-border: $orange-ghost !default;
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(180deg, $pink, $purple);
+}
+
+hr {
+  background-image: linear-gradient(90deg, $pink, $purple);
+}
+
+// Import only what you need from Bulma
+@import "node_modules/bulma/sass/utilities/_all.sass";
+@import "node_modules/bulma/sass/base/_all.sass";
+@import "node_modules/bulma/sass/elements/button.sass";
+@import "node_modules/bulma/sass/elements/container.sass";
+@import "node_modules/bulma/sass/components/level.sass";
+@import "node_modules/bulma/sass/form/_all.sass";
+@import "node_modules/bulma/sass/grid/_all.sass";
+
