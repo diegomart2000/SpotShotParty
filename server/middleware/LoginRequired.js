@@ -1,9 +1,10 @@
 const { log } = require('../util/logger');
 
 module.exports = (req, res, next) => {
-  const [ blank, start ] = req.url.split('/');
+  const [ blank, start, pub ] = req.url.split('/');
 
-  if ( start === 'api' ) {
+  // Make all paths user required, except from the ones that are pub
+  if (start === 'api' && pub !== 'pub') {
     const { user } = req;
     if (!user) {
       log(`UserLogin : path ${start} not authorized`);

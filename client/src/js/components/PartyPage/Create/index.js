@@ -1,1 +1,1 @@
-export { default } from './PartyCreatePage';
+export { default } from './PartyCreatePageContainer';

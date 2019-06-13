@@ -6,8 +6,6 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const helmet = require('helmet');
 
-const loginRequired = require('./middleware/LoginRequired');
-
 const routes = require('./routes');
 
 const socket = require('./util/socket');
@@ -19,7 +17,6 @@ const PORT = process.env.PORT;
 const ENV = process.env.NODE_ENV || 'development';
 
 const app = express();
-const server = require('http').Server(app);
 
 app.set('view engine', 'pug');
 app.use(helmet());
@@ -46,8 +43,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-app.use(loginRequired);
 
 routes(app);
 

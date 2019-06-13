@@ -5,7 +5,7 @@ const User = require('../model/User');
  * To get a user by id
  * @param {string} userId
  */
-module.exports.get = async (userId) => {
+exports.get = async (userId) => {
   if (!userId) throw new Error(`User id is required. Got u:${userId}`);
 
   try {
@@ -19,7 +19,7 @@ module.exports.get = async (userId) => {
 /**
  *
  */
-module.exports.login = async ({ spotifyId, userName, accessToken, email }) => {
+exports.login = async ({ spotifyId, userName, accessToken, email }) => {
   try {
     log(`UserService : User login [u: ${spotifyId}]`);
     let user = await User.findOne({ spotifyId }).exec();
