@@ -22,6 +22,7 @@ $green-ghost: color-ghost($green);
 $primary: $pink;
 
 $background-ghost: rgba(0,0,0,.4);
+$light: rgba(255, 255, 255, 0.6);
 
 // Control
 $radius-small: 1rem;
@@ -29,7 +30,7 @@ $radius: 2rem;
 $radius-large: 3rem;
 
 $control-height: 4rem;
-$control-border-width: 3px !default;
+$control-border-width: 1px !default;
 
 $control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
 $control-padding-horizontal: calc(2rem - #{$control-border-width}) !default;

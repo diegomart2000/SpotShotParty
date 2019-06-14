@@ -1,0 +1,12 @@
+@import 'styles/styles.scss';
+
+.join--passcode {
+  position: relative;
+
+  & > h2 {
+    color: $light;
+    position: absolute;
+    right: 0;
+    margin-top: -10px;
+  }
+}

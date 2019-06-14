@@ -4,6 +4,7 @@ require('./util/mongoose');
 const express = require('express');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
+const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 const routes = require('./routes');
@@ -19,6 +20,8 @@ const ENV = process.env.NODE_ENV || 'development';
 const app = express();
 
 app.set('view engine', 'pug');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(session({
   store: new RedisStore({

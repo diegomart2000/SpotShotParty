@@ -7,7 +7,7 @@ $item-gap: ($gap);
   padding: 0 $gap;
   background-color: $background-ghost;
   border-radius: $gap;
-  border: 3px solid $primary;
+  border: $control-border-width solid $primary;
   width: 100%;
   max-height: 45vh;
   height: ($gap + 6 * $item-size + 6 * $item-gap);
@@ -29,7 +29,6 @@ $item-gap: ($gap);
 
       & > h2 {
         text-shadow: 0 0 12px $purple;
-        //color: $purple !important;
       }
     }
 
@@ -50,6 +49,7 @@ $item-gap: ($gap);
     }
 
     & > h2 {
+      color: $purple-invert !important;
       transition: color 200ms, text-shadow 200ms;
     }
 

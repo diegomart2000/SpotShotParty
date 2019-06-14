@@ -1,5 +1,17 @@
 import { createSelector } from 'reselect';
 
-export const partySelector = ({ party }) => party;
+const base = ( {party} ) => party;
+
+export const partySelector = createSelector(
+  base,
+  ( state ) => {
+    const { party } = state;
+    if (!party) return;
+
+    const { name: partyName, passCode, playlistId } = party;
+    return ({ partyName, passCode, playlistId });
+  }
+);
+
 export const isFetchingSelector = ({ party: { isFetching } }) => isFetching;
 export const errorSelector = ({ party: { error } }) => error;

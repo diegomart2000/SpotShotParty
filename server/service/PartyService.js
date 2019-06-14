@@ -14,9 +14,15 @@ const hashCode = (s)  => s.split('').reduce((a, b) => { a = ((a << 5) - a) + b.c
  */
 exports.get = async (partyId) => {
   if (!partyId) throw new Error(`Party id is required. Got p:${partyId}`);
-
   try {
-    return await Party.findById(partyId).exec();
+    let party = await cache.get(partyId);
+    if (party) return party;
+
+    // Party not found in cache, fetch it
+    party = await Party.findById(partyId).exec();
+    await cache.set(partyId, party.toJSON());
+
+    return party;
   } catch (err) {
     error(`PartyService : Error while loading party for ${partyId}`, err);
     throw err;
@@ -30,18 +36,20 @@ exports.create = async (userId, partyName, playlistId) => {
   try {
     log(`PartyService : Party create [u: ${userId}, n: ${partyName}]`);
     const passCode = crypto.randomBytes(2).toString('hex').toUpperCase();
-    const party = new Party({ userId, playlistId, partyName, passCode });
+    const party = new Party({ userId, playlistId, name: partyName, passCode });
     await party.save();
 
+    const partyId = party._id.toString();
+
     // register it on redis to make it fast to fetch
-    cache.hmset(party._id, party.toJSON());
+    await cache.set(partyId, party.toJSON());
 
     // register the event listener
-    socket.create(party._id);
+    socket.create(partyId);
 
     return party;
   } catch (err) {
-    error(`PartyService : Error while creating party for ${plain}`, err);
+    error(`PartyService : Error while creating party for ${partyName}`, err);
     throw err;
   }
 };

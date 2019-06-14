@@ -32,8 +32,7 @@
     @include input-primary();
   }
   &::-webkit-input-placeholder {
-    color: $purple-invert;
-    opacity: .6;
+    color: $light;
   }
 
 }

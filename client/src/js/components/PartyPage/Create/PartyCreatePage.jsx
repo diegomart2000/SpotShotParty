@@ -1,7 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import compose from 'lodash/fp/compose';
-
 import classNames from 'classnames/bind';
 
 import Button from 'ui/Button';
@@ -14,19 +11,19 @@ const cx = classNames.bind(styles);
 import withUser from 'components/hoc/WithUser';
 import Playlists from '../Playlists';
 
-const PartyCreatePage = ({user}) => {
+const PartyCreatePage = ({ user, createParty }) => {
   const [ playlistId, setPlaylist ] = useState('');
-  const [ name, setName ] = useState('');
+  const [ partyName, setName ] = useState('');
 
   return (
     <Fragment>
       <div className={cx('container')}>
         <div className={cx('level', 'has-text-centered')}>
-          <Title>Alright {user.userName}, let's create your party 🎉</Title>
+          <Title>Alright {user.userName}, let's create your party</Title>
         </div>
 
         <div className={cx('level')}>
-          <Input value={name} onChange={({target: {value}}) => setName(value)} primary placeholder='Give it a rockerz name in here...' />
+          <Input value={partyName} onChange={({target: {value}}) => setName(value)} primary placeholder='Give it a rockerz name in here...' />
         </div>
 
         <div className={cx('level')}>
@@ -36,13 +33,13 @@ const PartyCreatePage = ({user}) => {
         />
         </div>
 
-        {( playlistId && name ) && (
+        {( playlistId && partyName ) && (
           <div className={cx('level-right')}>
             <div className={cx('level-item')}>
               <Button
                 primary
                 block
-                href='http://localhost:8080/auth'
+                onClick={() => createParty({ partyName, playlistId })}
                 >
                 GO  <span>👉</span>
               </Button>
@@ -54,9 +51,4 @@ const PartyCreatePage = ({user}) => {
   );
 }
 
-const withAll = compose(
-  withRouter, // to prevent 'Failed prop type: Invalid prop `component` supplied to `Route`'
-  withUser,
-);
-
-export default withAll(PartyCreatePage);
+export default withUser(PartyCreatePage);

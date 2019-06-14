@@ -3,15 +3,10 @@ const compose = require('lodash/fp/compose');
 const Passport = require('./Passport');
 
 const User = require('./api/User');
-// const Rule = require('./Rule');
-// const Person = require('./Person');
-// const Scoring = require('./Scoring');
+const Party = require('./api/Party');
 
 module.exports = compose(
-  // Scoring,
-  // Rule,
-  // Person,
-  // Company
   Passport,
   User,
+  Party,
 );

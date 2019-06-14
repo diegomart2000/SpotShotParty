@@ -4,20 +4,23 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import compose from 'lodash/fp/compose';
 
-import { createParty } from 'store/actions/PartyActions';
+import { fetchParty } from 'store/actions/PartyActions';
 import { isFetchingSelector, partySelector, errorSelector } from 'store/selectors/party';
 
-import PartyCreatePage from './PartyCreatePage';
+import withUser from 'components/hoc/WithUser';
+
+import PartyJoinPage from './PartyJoinPage';
 
 const mapStateToProps = state => ({
   isFetching: isFetchingSelector(state),
+  party: partySelector(state),
   error: errorSelector(state),
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      createParty,
+      fetchParty,
     },
 
     dispatch
@@ -25,7 +28,8 @@ const mapDispatchToProps = dispatch =>
 
 const withAll = compose(
   withRouter, // to prevent 'Failed prop type: Invalid prop `component` supplied to `Route`'
+  withUser,
   connect(mapStateToProps, mapDispatchToProps),
 );
 
-export default withAll(PartyCreatePage);
+export default withAll(PartyJoinPage);
