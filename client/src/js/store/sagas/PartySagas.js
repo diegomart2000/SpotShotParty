@@ -1,5 +1,6 @@
 import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 import request from 'request/party';
+import socket from 'request/socket';
 
 import { push } from 'utils/history';
 import types from 'store/actions/types/PartyActionTypes';
@@ -21,6 +22,8 @@ export function* doPartyCreate(action) {
     const { data } = yield call(request.create, party);
     yield put(createPartySuccess(data));
     yield call(push, '/party/join');
+    yield call(socket.party, data._id);
+
   } catch (error) {
     yield put(createPartyError(error.response.data));
   }
@@ -39,6 +42,7 @@ export function* doPartyFetch(action) {
     if ( !party ) {
       const { data } = yield call(request.fetch);
       yield put(fetchPartySuccess(data));
+      yield call(socket.party, data._id);
     }
   } catch (error) {
     yield put(fetchPartyError(error.response.data));

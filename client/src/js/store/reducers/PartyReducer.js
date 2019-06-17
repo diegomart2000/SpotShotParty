@@ -68,6 +68,17 @@ const reducer = (
       };
     }
 
+    case types.PARTY_PLAYER_JOIN: {
+      const { party } = previousState;
+      return {
+        ...previousState,
+        party: {
+          ...party,
+          parties: [...party.parties, payload],
+        },
+      }
+    }
+
     default:
       return previousState;
   }

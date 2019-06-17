@@ -7,7 +7,9 @@ const PartyActionTypes = mirrorCreator([
 
   'PARTY_FETCH',
   'PARTY_FETCH_SUCCESS',
-  'PARTY_FETCH_ERROR',
+  'PARTY_FETCH_ERROR',,
+
+  'PARTY_PLAYER_JOIN',
 ]);
 
 export default PartyActionTypes;

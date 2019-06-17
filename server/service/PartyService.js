@@ -44,9 +44,6 @@ exports.create = async (userId, partyName, playlistId) => {
     // register it on redis to make it fast to fetch
     await cache.set(partyId, party.toJSON());
 
-    // register the event listener
-    socket.create(partyId);
-
     return party;
   } catch (err) {
     error(`PartyService : Error while creating party for ${partyName}`, err);
@@ -57,18 +54,19 @@ exports.create = async (userId, partyName, playlistId) => {
 /**
  * Allows a partie to join a party
  */
-exports.join = async (nickName, partyName, passCode) => {
+exports.join = async (nickName, avatar, partyName, passCode) => {
   try {
     log(`PartyService : Party create [u: ${nickName}, n: ${partyName}]`);
     const party = await Party.findOne({ name: partyName, passCode }).exec();
-    const player = party.parties.create({ nickName });
+    const player = party.parties.create({ nickName, avatar });
+    party.parties.push(player);
 
-    // fetch the party from cache
+    await party.save();
 
     // register it on redis to make it fast to fetch
+    await cache.set(party._id, party.toJSON());
 
-    // register the event listener
-
+    socket.notify('player/joined', party._id.toString(), 'party', player);
 
     return {
       party,

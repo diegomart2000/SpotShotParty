@@ -8,11 +8,11 @@ const set = promisify(client.set).bind(client);
 module.exports = {
 
   async set(key, value) {
-    return set(key, JSON.stringify(value));
+    return set(key.toString(), JSON.stringify(value));
   },
 
   async get(key) {
-    const value = await get(key);
+    const value = await get(key.toString());
     if (value) return JSON.parse(value);
   }
 

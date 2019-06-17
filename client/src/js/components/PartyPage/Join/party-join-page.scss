@@ -1,5 +1,8 @@
 @import 'styles/styles.scss';
 
+$item-size: ($gap * 1.5);
+$item-gap: ($gap);
+
 .join--passcode {
   position: relative;
 
@@ -8,5 +11,58 @@
     position: absolute;
     right: 0;
     margin-top: -10px;
+  }
+}
+
+.players--item {
+  display: flex;
+  align-items: center;
+  padding-top: ($item-gap);
+
+  & > div {
+    border-radius: 50%;
+    margin-right: $item-gap;
+    vertical-align: text-bottom;
+    line-height: 1;
+    font-size: 4rem;
+    position: relative;
+
+    animation: animationFrames linear 1s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 50%;
+  }
+
+  & > h2 {
+    color: $purple-invert;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  @keyframes animationFrames{
+    0% {
+      transform:  translate(0px,0px)  ;
+    }
+    5% {
+      transform:  translate(-3px,-5px)  ;
+    }
+    25% {
+      transform:  translate(-3px,-5px)  ;
+    }
+    30% {
+      transform:  translate(0px,0px)  ;
+    }
+
+    50% {
+      transform:  translate(0px,0px) ;
+    }
+    55% {
+      transform:  translate(3px, -5px)  ;
+    }
+    75% {
+      transform:  translate(3px, -5px)  ;
+    }
+    80% {
+      transform:  translate(0px,0px)  ;
+    }
   }
 }

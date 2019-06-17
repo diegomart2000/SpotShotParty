@@ -3,6 +3,7 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const partiesSchema = new mongoose.Schema({
   nickName: 'string',
+  avatar: 'string',
 });
 
 const schema = new mongoose.Schema({

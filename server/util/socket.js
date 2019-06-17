@@ -18,6 +18,7 @@ exports.serve = (app) => {
   io.on('connection', (socket) => {
     log('socket server : connection : new client connection');
     socket.on('player/register', reqister(socket));
+    socket.on('party/register', party(socket));
   });
 
   return server;
@@ -27,6 +28,14 @@ exports.serve = (app) => {
 const reqister = socket => (partyId, userId) => {
   connections[partyId][userId] = { socket };
   log('socket server : connection : client connection registered [p: %s, u: %s]', partyId, userId);
+};
+
+
+const party = socket => (partyId) => {
+  connections[partyId] = connections[partyId] || {};
+
+  connections[partyId].party = { socket };
+  log(`socket server : connection : party connection registered [p: ${partyId}]`);
 };
 
 // Outgoing events
@@ -46,7 +55,7 @@ exports.notify = (event, partyId, userId, ...params) => {
   if (party && party[userId]) {
     const player = party[userId];
     log(`socket server : notify : party found, notifying [e: ${event}]`);
-    player.socket.emit(event, { ...params });
+    player.socket.emit(event, ...params);
   }
 };
 

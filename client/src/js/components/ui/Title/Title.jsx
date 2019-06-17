@@ -4,7 +4,7 @@ import styles from './title.scss';
 const cx = classNames.bind(styles);
 
 const Title = (props) => (
-  <h1 {...props} className={cx('title')}>
+  <h1 {...props} className={cx('title', 'animated', 'bounce-in-left')}>
     {props.children}
   </h1>
 )

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import compose from 'lodash/fp/compose';
 
 import { fetchParty } from 'store/actions/PartyActions';
-import { isFetchingSelector, partySelector, errorSelector } from 'store/selectors/party';
+import { isFetchingSelector, partySelector, playersSelector, errorSelector } from 'store/selectors/party';
 
 import withUser from 'components/hoc/WithUser';
 
@@ -15,6 +15,8 @@ const mapStateToProps = state => ({
   isFetching: isFetchingSelector(state),
   party: partySelector(state),
   error: errorSelector(state),
+
+  players: playersSelector(state),
 });
 
 const mapDispatchToProps = dispatch =>

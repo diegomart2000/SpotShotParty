@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
+import Page, { PageHeader, PageContent, PageFooter } from 'ui/Page';
 import Button from 'ui/Button';
 import Input from 'ui/Input';
 import Title from 'ui/Title';
@@ -16,38 +17,38 @@ const PartyCreatePage = ({ user, createParty }) => {
   const [ partyName, setName ] = useState('');
 
   return (
-    <Fragment>
-      <div className={cx('container')}>
-        <div className={cx('level', 'has-text-centered')}>
+    <Page>
+      <PageHeader>
           <Title>Alright {user.userName}, let's create your party</Title>
-        </div>
+      </PageHeader>
 
-        <div className={cx('level')}>
+      <PageContent>
+        <div className={cx('level', 'animated', 'fade-in', 'delay-300ms')}>
           <Input value={partyName} onChange={({target: {value}}) => setName(value)} primary placeholder='Give it a rockerz name in here...' />
         </div>
 
-        <div className={cx('level')}>
+        <div className={cx('level', 'animated', 'fade-in', 'delay-600ms')}>
           <Playlists
             selected={playlistId}
             onSelect={setPlaylist}
         />
         </div>
+      </PageContent>
 
+      <PageFooter>
         {( playlistId && partyName ) && (
-          <div className={cx('level-right')}>
-            <div className={cx('level-item')}>
-              <Button
-                primary
-                block
-                onClick={() => createParty({ partyName, playlistId })}
-                >
-                GO  <span>👉</span>
-              </Button>
-            </div>
+          <div className={cx('animated', 'bounce-in-up')}>
+            <Button
+              primary
+              block
+              onClick={() => createParty({ partyName, playlistId })}
+              >
+              GO  <span>👉</span>
+            </Button>
           </div>
         )}
-      </div>
-    </Fragment>
+      </PageFooter>
+    </Page>
   );
 }
 
