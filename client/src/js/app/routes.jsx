@@ -1,5 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import {
+  BrowserView,
+  MobileView,
+} from 'react-device-detect';
 
 import App from './App';
 
@@ -14,18 +18,29 @@ import PartyCreatePage from 'components/PartyPage/Create';
 import PartyJoinPage from 'components/PartyPage/Join';
 import TrackPage from 'components/TrackPage';
 
+import PlayerJoinPage from 'components/PlayerPage/Join';
+
 export default (
   <App>
     <Background>
       <Grid>
         <GridContent>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/party/create' component={PartyCreatePage} />
-            <Route exact path='/party/join' component={PartyJoinPage} />
-            <Route exact path='/party/track' component={TrackPage} />
-            <Route component={NotFound} />
-          </Switch>
+          <BrowserView>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/party/create' component={PartyCreatePage} />
+              <Route exact path='/party/join' component={PartyJoinPage} />
+              <Route exact path='/party/track' component={TrackPage} />
+              <Route component={NotFound} />
+            </Switch>
+          </BrowserView>
+
+          <MobileView>
+            <Switch>
+              <Route exact path='/' component={PlayerJoinPage} />
+              <Route component={NotFound} />
+            </Switch>
+          </MobileView>
         </GridContent>
       </Grid>
     </Background>

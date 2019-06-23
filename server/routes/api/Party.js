@@ -60,8 +60,14 @@ const join = async (req, res) => {
   }
 
   try {
-    const { party, player } = await PartyService.join(nickName, avatar, partyName, passCode);
+    const result = await PartyService.join(nickName, avatar, partyName, passCode);
 
+    if (! result ) {
+      return res.status(404).send({error: 404, message: `Party ${partyName} with passcode ${passCode} not found`});
+    }
+
+    // if found, continue
+    const { party, player } = result;
     log(`API Party : create : party joined [n: ${nickName}, p: ${party._id}]`);
     req.session.partyId = party._id.toString();
     req.session.player = player;

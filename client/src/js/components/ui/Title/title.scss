@@ -2,8 +2,12 @@
 
 .title {
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 800;
+
+  @media (min-width: 1024px) {
+    font-size: 3rem;
+  }
 }
 
 

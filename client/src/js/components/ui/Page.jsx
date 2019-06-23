@@ -2,9 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PageGrid = styled.div`
-  min-height: 100%;
+  min-height: 100vh;
   display: grid;
-  grid-template-rows: [top] 8rem [content-start] 1fr [content-end] 8rem [bottom];
+
+  grid-template-rows: [top] 5rem [content-start] 1fr [content-end] 4rem [bottom];
+
+  @media (min-width: 1024px) {
+    grid-template-rows: [top] 8rem [content-start] 1fr [content-end] 8rem [bottom];
+  }
 `;
 
 export const PageHeader = styled.div`

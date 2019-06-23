@@ -1,7 +1,7 @@
 @import 'styles/styles.scss';
 
-@mixin input-primary {
-  color: $purple-invert;
+@mixin input-color($color) {
+  color: $color;
 
   :hover,
   :active {
@@ -9,7 +9,7 @@
   }
 
   :focus {
-    color: $purple-invert;
+    color: $color;
     color: inherit;
   }
 }
@@ -29,8 +29,13 @@
   }
 
   &.is-primary {
-    @include input-primary();
+    @include input-color($purple-invert);
   }
+
+  &.is-danger {
+    @include input-color($purple-invert);
+  }
+
   &::-webkit-input-placeholder {
     color: $light;
   }

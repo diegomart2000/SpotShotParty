@@ -6,7 +6,6 @@ const socketMiddleware = (listeners) => store => next => {
   listeners.map(listener => {
     const { event, type } = listener;
     socket.on(event, (payload) => {
-      debugger;
       next({
         type,
         payload,
@@ -17,7 +16,6 @@ const socketMiddleware = (listeners) => store => next => {
   return action => {
     // Check if has some emiter
     if ( action.emit ) {
-      debugger;
       socket.emit(action.emit, action.payload);
     }
 

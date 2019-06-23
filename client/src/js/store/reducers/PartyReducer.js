@@ -68,7 +68,7 @@ const reducer = (
       };
     }
 
-    case types.PARTY_PLAYER_JOIN: {
+    case types.PARTY_PLAYER_JOINED: {
       const { party } = previousState;
       return {
         ...previousState,

@@ -56,7 +56,7 @@ $link-active-border: $orange-ghost !default;
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(180deg, $pink, $purple);
+  background-image: linear-gradient(180deg, #000, $purple);
 }
 
 hr {
@@ -68,6 +68,7 @@ hr {
 @import "node_modules/bulma/sass/base/_all.sass";
 @import "node_modules/bulma/sass/elements/button.sass";
 @import "node_modules/bulma/sass/elements/container.sass";
+@import "node_modules/bulma/sass/elements/notification.sass";
 @import "node_modules/bulma/sass/components/level.sass";
 @import "node_modules/bulma/sass/form/_all.sass";
 @import "node_modules/bulma/sass/grid/_all.sass";

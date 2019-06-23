@@ -56,8 +56,13 @@ exports.create = async (userId, partyName, playlistId) => {
  */
 exports.join = async (nickName, avatar, partyName, passCode) => {
   try {
-    log(`PartyService : Party create [u: ${nickName}, n: ${partyName}]`);
-    const party = await Party.findOne({ name: partyName, passCode }).exec();
+    log(`PartyService : Party join [u: ${nickName}, n: ${partyName}]`);
+    const name = new RegExp(`^${partyName}$`, 'i');
+    const party = await Party.findOne({ name, passCode }).exec();
+
+    // Check if the party was found or throw
+    if ( !party ) return null;
+
     const player = party.parties.create({ nickName, avatar });
     party.parties.push(player);
 
@@ -74,7 +79,7 @@ exports.join = async (nickName, avatar, partyName, passCode) => {
     };
 
   } catch (err) {
-    error(`PartyService : Error while creating party for ${plain}`, err);
+    error(`PartyService : Error while joining party for [p: ${partyName}, pc: ${passCode}]`, err);
     throw err;
   }
 };

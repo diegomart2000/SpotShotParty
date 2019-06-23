@@ -25,7 +25,7 @@ exports.serve = (app) => {
 };
 
 // Incomming events
-const reqister = socket => (partyId, userId) => {
+const reqister = socket => ({ partyId, userId }) => {
   connections[partyId][userId] = { socket };
   log('socket server : connection : client connection registered [p: %s, u: %s]', partyId, userId);
 };

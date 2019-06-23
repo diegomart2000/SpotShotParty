@@ -16,4 +16,12 @@ export default {
   fetch() {
     return request().get(`/party`);
   },
+
+  /**
+   * To join a party
+   * @returns {Promise} - Result of ajax call.
+   */
+  join({ nickName, avatar, partyName, passCode }) {
+    return request().post(`/party/join`, { nickName, avatar, partyName, passCode });
+  },
 };
