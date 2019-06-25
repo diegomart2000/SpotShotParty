@@ -24,9 +24,9 @@ That's way more fun and you already have your excuse.
 This demo app is based on MERN stack.
 
 ### Backend
-It's a Node/Express App using MongoDb for persistence, Redis for Session Store, and Socketio as event emmiter to make the front end react to sertain events.
+It's a `Node` / `Express` App using `MongoDb` for persistence, `Redis` as Session Store, and `Socket.io` as event emmiter to make the front end to react to sertain events.
 
-Authentication with Spotify is handled with Passport.js. Database mappings and schemas are modeled with Mongoose. Frequent objects (like mina Party object), are stored in Redis for quick access and to avoid DB latency.
+Authentication with Spotify is handled with `Passport.js`. Database mappings and schemas are modeled with `Mongoose`. Frequent objects (like mina Party object), are stored in `Redis` for quick access and to avoid DB latency.
 
 The Backend is architected in 3 layers:
 
@@ -40,7 +40,7 @@ Implementing Cache and Models integration. It is also responsible to emmit event
 Abstracting the access to db.
 
 ### Frontend
-It's built on top of React, Redux for state management, Sagas to tigger side effects. Css and styling is done with css modules/Sass and Styled components for convenience. Also features a Redux middleware to dispatch events from Socketio. Everything built with webpack and Workbox to make it a Progressive Web App.
+It's built on top of `React`, `Redux` for state management, `Sagas` to tigger side effects. Css and styling is done with `css modules`/`Sass` and `Styled components` for convenience. Also features a Redux middleware to dispatch events from Socket.io. Everything built with `Webpack 4` and `Workbox` to make it a Progressive Web App.
 
 The Front is architected with following layers:
 
