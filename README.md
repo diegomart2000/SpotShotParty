@@ -16,9 +16,11 @@ Believe me, it is a lot of fun 🍻
 ### Are you a daddy and wanna play with the kiddos? Say no more. 
 Instead of taking a tequila shot, you will have the opportunity to shot your water gun in their faces.
 
-That's way more fun and you already have your excuse.
+That's way more fun and we already have you covered with this perfect excuse.
 
-- Hey wife, those are the rules 😌
+- Hey wife, those are the game rules 😌
+
+Perfect! 👏
 
 ## The stack
 This demo app is based on MERN stack.
