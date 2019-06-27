@@ -4,7 +4,7 @@ const PartyService = require('../../service/PartyService');
 
 const Party = app => {
   app.post('/api/party', loginRequired, create);
-  app.get('/api/party', loginRequired, get);
+  app.get('/api/party', get);
   app.post('/api/party/join', join);
 
   return app;
@@ -48,13 +48,13 @@ const create = async (req, res) => {
 };
 
 const join = async (req, res) => {
-  const { player, partyId } = req.session;
+  const { player, partyId, partyName: joinedParty } = req.session;
   const { nickName, avatar, partyName, passCode } = req.body;
 
   log(`API Party : join : about to join party [n: ${nickName}, p: ${partyName}]`);
 
   // Check if player is trying to reconnect
-  if (player) {
+  if (player && joinedParty === partyName) {
     log(`API Party : join : reconnected to [n: ${nickName}, p: ${partyName}]`);
     return res.send({ partyId, player });
   }
@@ -70,6 +70,7 @@ const join = async (req, res) => {
     const { party, player } = result;
     log(`API Party : create : party joined [n: ${nickName}, p: ${party._id}]`);
     req.session.partyId = party._id.toString();
+    req.session.partyName = party.name;
     req.session.player = player;
 
     res.send({ partyId, player });

@@ -6,6 +6,7 @@ export default {
    * @returns {Promise} - Result of ajax call.
    */
   create({partyName, playlistId}) {
+    partyName = partyName.trim();
     return request().post(`/party`, { partyName, playlistId });
   },
 
@@ -22,6 +23,8 @@ export default {
    * @returns {Promise} - Result of ajax call.
    */
   join({ nickName, avatar, partyName, passCode }) {
+    partyName = partyName.trim();
+    nickName = nickName.trim();
     return request().post(`/party/join`, { nickName, avatar, partyName, passCode });
   },
 };

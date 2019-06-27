@@ -19,6 +19,7 @@ import PartyJoinPage from 'components/PartyPage/Join';
 import TrackPage from 'components/TrackPage';
 
 import PlayerJoinPage from 'components/PlayerPage/Join';
+import PlayerWaitingPage from 'components/PlayerPage/Waiting';
 
 export default (
   <App>
@@ -38,6 +39,7 @@ export default (
           <MobileView>
             <Switch>
               <Route exact path='/' component={PlayerJoinPage} />
+              <Route exact path='/waiting' component={PlayerWaitingPage} />
               <Route component={NotFound} />
             </Switch>
           </MobileView>

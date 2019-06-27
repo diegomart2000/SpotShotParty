@@ -1,0 +1,10 @@
+@import "styles/styles.scss";
+
+.avatar {
+  display: inline-block;
+  position: relative;
+  animation: avatar-dancing linear 1s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+}
+

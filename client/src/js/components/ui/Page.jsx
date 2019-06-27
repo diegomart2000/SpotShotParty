@@ -5,7 +5,7 @@ const PageGrid = styled.div`
   min-height: 100vh;
   display: grid;
 
-  grid-template-rows: [top] 5rem [content-start] 1fr [content-end] 4rem [bottom];
+  grid-template-rows: [top] 5rem [content-start] 1fr [content-end] 8rem [bottom];
 
   @media (min-width: 1024px) {
     grid-template-rows: [top] 8rem [content-start] 1fr [content-end] 8rem [bottom];

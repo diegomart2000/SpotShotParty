@@ -237,3 +237,34 @@
 .roll-in {
   animation-name: roll-in;
 }
+
+
+// Avatars
+@keyframes avatar-dancing {
+  0% {
+    transform:  translate(0px,0px)  ;
+  }
+  5% {
+    transform:  translate(-3px,-5px)  ;
+  }
+  25% {
+    transform:  translate(-3px,-5px)  ;
+  }
+  30% {
+    transform:  translate(0px,0px)  ;
+  }
+
+  50% {
+    transform:  translate(0px,0px) ;
+  }
+  55% {
+    transform:  translate(3px, -5px)  ;
+  }
+  75% {
+    transform:  translate(3px, -5px)  ;
+  }
+  80% {
+    transform:  translate(0px,0px)  ;
+  }
+}
+

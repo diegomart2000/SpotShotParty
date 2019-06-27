@@ -30,7 +30,7 @@ const HomePage = () => (
         <Button
           primary
           block
-          href='http://localhost:8080/auth'
+          href={`${process.env.BACKEND_URL}/auth`}
           >
           Let's do this
         </Button>

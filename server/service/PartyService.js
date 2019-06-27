@@ -71,7 +71,7 @@ exports.join = async (nickName, avatar, partyName, passCode) => {
     // register it on redis to make it fast to fetch
     await cache.set(party._id, party.toJSON());
 
-    socket.notify('player/joined', party._id.toString(), 'party', player);
+    socket.broadcast('player/joined', party._id.toString(), player);
 
     return {
       party,

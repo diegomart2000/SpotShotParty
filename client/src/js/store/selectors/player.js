@@ -7,8 +7,8 @@ export const playerSelector = createSelector(
   ({ player }) => {
     if (!player) return;
 
-    const { name: partyName, passCode, playlistId } = player;
-    return ({ partyName, passCode, playlistId });
+    const { _id, nickName, avatar } = player;
+    return ({ _id, nickName, avatar });
   }
 );
 

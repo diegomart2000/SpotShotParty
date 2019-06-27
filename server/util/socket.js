@@ -17,21 +17,21 @@ exports.serve = (app) => {
   // Handles the connection event
   io.on('connection', (socket) => {
     log('socket server : connection : new client connection');
-    socket.on('player/register', reqister(socket));
-    socket.on('party/register', party(socket));
+    socket.on('player/register', playerRegister(socket));
+    socket.on('party/register', partyRegister(socket));
   });
 
   return server;
 };
 
 // Incomming events
-const reqister = socket => ({ partyId, userId }) => {
+const playerRegister = socket => (partyId, userId) => {
   connections[partyId][userId] = { socket };
   log('socket server : connection : client connection registered [p: %s, u: %s]', partyId, userId);
 };
 
 
-const party = socket => (partyId) => {
+const partyRegister = socket => (partyId) => {
   connections[partyId] = connections[partyId] || {};
 
   connections[partyId].party = { socket };
@@ -45,7 +45,7 @@ exports.broadcast = (event, partyId, ...params) => {
   if (connections[partyId]) {
     const parties = connections[partyId];
     log(`socket server : broadcast : party found, broadcasting [e: ${event}, to: ${Object.keys(parties).length}]`);
-    Object.values(parties).map(client => client.socket.emit(event, {...params}));
+    Object.values(parties).map(client => client.socket.emit(event, ...params));
   }
 };
 

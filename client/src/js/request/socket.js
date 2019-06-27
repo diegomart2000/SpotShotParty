@@ -13,5 +13,9 @@ socket.on('connect', () => {
 export default {
   party(partyId) {
     socket.emit('party/register', partyId, partyId);
+  },
+
+  player(partyId, playerId) {
+    socket.emit('player/register', partyId, playerId);
   }
 };

@@ -38,6 +38,35 @@ const reducer = (
       };
     }
 
+
+    case types.PLAYER_FETCH: {
+      return {
+        ...previousState,
+        isFetching: true,
+        player: null,
+        error: null,
+      };
+    }
+
+    case types.PLAYER_FETCH_SUCCESS: {
+      return {
+        ...previousState,
+        isFetching: false,
+        player: payload,
+      };
+    }
+
+    case types.PLAYER_FETCH_ERROR: {
+      const { error } = payload;
+
+      return {
+        ...previousState,
+        isFetching: false,
+        player: null,
+        error,
+      };
+    }
+
     default:
       return previousState;
   }
